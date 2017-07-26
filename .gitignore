@@ -1,0 +1,13 @@
+node_modules/
+./*/node_modules/
+*/node_modules/
+www/
+platforms
+*/www/
+*/platforms/
+./*/www/
+./*/platforms/
+./*/plugins/
+./plugins/
+*/plugins/
+.vscode/

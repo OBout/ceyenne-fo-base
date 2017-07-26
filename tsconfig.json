@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "dom",
+      "es2015"
+    ],
+    "module": "es2015",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "es5"
+  },
+  "files": [
+    "ceyenne-fo-base.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "test",
+    "src/environments",
+    "src/mocks.ts",
+    "src/test.ts",
+    "src/polyfills.ts",
+    "src/**/*.spec.ts"
+  ]
+}
