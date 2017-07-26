@@ -72,4 +72,9 @@
     "typescript": "^2.4.2",
     "typings": "^2.1.1"
   }
+  ,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OBout/ceyenne-fo-base.git"
+  }
 }
