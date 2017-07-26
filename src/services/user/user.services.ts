@@ -61,7 +61,7 @@ export class UserService implements OnInit {
             "ConfirmationToken": this.config.CONFORMATIONTOKEN
         };
         let options: any = {};
-        let loginAction : Observable < any >;
+        let loginAction: any;
         if (this.config.METHOD) {
             if (this.config.METHOD === "local") {
                 loginAction = this
