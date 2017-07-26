@@ -48,7 +48,7 @@ export class UserService implements OnInit {
         this.authenticationToken = "";
     }
 
-    public login(username : string, password : string, redirect?: any) : Observable < Response > {
+    public login(username : string, password : string, redirect?: any) : Observable < any > {
 
         let headers: Headers = new Headers();
 
@@ -61,7 +61,7 @@ export class UserService implements OnInit {
             "ConfirmationToken": this.config.CONFORMATIONTOKEN
         };
         let options: any = {};
-        let loginAction : Observable < Response >;
+        let loginAction : Observable < any >;
         if (this.config.METHOD) {
             if (this.config.METHOD === "local") {
                 loginAction = this
