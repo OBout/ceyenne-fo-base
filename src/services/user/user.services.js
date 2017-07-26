@@ -48,21 +48,6 @@ var UserService = (function () {
         this.authenticationToken = "";
     };
     UserService.prototype.login = function (username, password, redirect) {
-        // @ TODO CREATE SAFE AND NORMAL LOGIN (hint -> look at oAuth in Juniper/Cnext
-        // project) NOW IT IS A CUSTOM POST THINGY UNSECURED FOR XXS AND CSRF)
-        /*
-
-            EVEN WORSE, PASSWORD IS GOING STRAIGHT IN POST REQUEST LIKE THIS
-
-            {
-                "UserName": "abc",
-                "Password": "abc"
-                "ApplicationID" : 1,
-                "ConfirmationToken" : "8B56C4925B25435F8667DAF9B01F85045E7B647E6E0C132549074F1372CFEE60"
-            }
-
-         */
-        // aALL IN ALL PRETTY UNSAFE AND NOT PRODUCTION READY
         var _this = this;
         var headers = new Headers();
         headers.append("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");

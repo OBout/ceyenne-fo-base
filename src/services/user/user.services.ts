@@ -48,7 +48,7 @@ export class UserService implements OnInit {
         this.authenticationToken = "";
     }
 
-    public login(username : string, password : string, redirect?: any) : Observable < any > {
+    public login(username : string, password : string, redirect?: any) : Observable < Response > {
 
         let headers: Headers = new Headers();
 
