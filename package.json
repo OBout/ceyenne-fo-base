@@ -1,6 +1,6 @@
 {
   "name": "ceyenne2020-fo-base",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "ceyenne base front end classes",
   "main": "./ceyenne-fo-base.ts",
   "typings": "./ceyenne-fo-base.d.ts",
