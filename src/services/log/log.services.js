@@ -8,7 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Injectable } from "@angular/core";
-var CeyenneLogService = (function () {
+var CeyenneLogService = /** @class */ (function () {
     function CeyenneLogService(debug_console) {
         this.debug_console = false;
         this.debug_console = debug_console;

@@ -66,5 +66,13 @@
     "tslint-eslint-rules": "^4.1.1",
     "typescript": "^2.3.4",
     "typings": "^2.1.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OBout/ceyenne-fo-base.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OBout/ceyenne-fo-base/issues"
+  },
+  "homepage": "https://github.com/OBout/ceyenne-fo-base#readme"
 }

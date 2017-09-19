@@ -1,6 +1,5 @@
 import { OnInit } from "@angular/core/core";
-import { Http, Response } from "@angular/http";
-import { Observable } from "rxjs/Rx";
+import { Http } from "@angular/http";
 import "rxjs/add/operator/map";
 export declare class UserService implements OnInit {
     private http;
@@ -15,6 +14,6 @@ export declare class UserService implements OnInit {
     getAuthenticationtoken(): string;
     getCurrentUser(): any;
     logout(): void;
-    login(username: string, password: string, redirect?: any): Observable<Response>;
+    login(username: string, password: string, redirect?: any): any;
     signup(username: string, password: string): void;
 }

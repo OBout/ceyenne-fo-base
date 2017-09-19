@@ -13,7 +13,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 import { Injectable, Inject } from "@angular/core";
 import { Http, Headers } from "@angular/http";
 import "rxjs/add/operator/map";
-var UserService = (function () {
+var UserService = /** @class */ (function () {
     function UserService(http) {
         this.http = http;
         this.currentUser = {};
