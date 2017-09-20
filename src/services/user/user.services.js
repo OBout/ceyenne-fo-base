@@ -34,8 +34,7 @@ var UserService = /** @class */ (function () {
         return this.authenticationToken;
     };
     UserService.prototype.getCurrentUser = function () {
-        // returning current user let curu: any = this.currentUser; let curjson: any =
-        // JSON.parse(curu);
+        // returning current user let curu: any = this.currentUser; let curjson: any =JSON.parse(curu);
         return this.currentUser;
     };
     UserService.prototype.logout = function () {
@@ -47,7 +46,6 @@ var UserService = /** @class */ (function () {
     UserService.prototype.login = function (username, password, redirect) {
         var _this = this;
         var headers = new Headers();
-        headers.append("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
         headers.append("Content-Type", "application/x-www-form-urlencoded");
         headers.append("Authorization", "Basic " + this.config.CONFORMATIONTOKEN);
         var conString = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
@@ -70,7 +68,7 @@ var UserService = /** @class */ (function () {
                 // console.log("posting", conString);
                 loginAction = this
                     .http
-                    .post(conString, options, body);
+                    .post(conString, { headers: headers, body: body });
             }
         }
         else {

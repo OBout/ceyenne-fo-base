@@ -33,8 +33,7 @@ export class UserService implements OnInit {
     }
 
     public getCurrentUser() : any {
-        // returning current user let curu: any = this.currentUser; let curjson: any =
-        // JSON.parse(curu);
+        // returning current user let curu: any = this.currentUser; let curjson: any =JSON.parse(curu);
         return this.currentUser;
     }
 
@@ -49,7 +48,6 @@ export class UserService implements OnInit {
 
         let headers: Headers = new Headers();
 
-        headers.append("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
         headers.append("Content-Type", "application/x-www-form-urlencoded");
         headers.append("Authorization", "Basic " + this.config.CONFORMATIONTOKEN);
         let conString: string = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
@@ -72,7 +70,7 @@ export class UserService implements OnInit {
                 // console.log("posting", conString);
                 loginAction = this
                     .http
-                    .post(conString, options, body);
+                    .post(conString, {headers : headers, body : body});
             }
         } else {
             // console.log("posting", conString);
