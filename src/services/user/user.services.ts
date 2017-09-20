@@ -90,19 +90,23 @@ export class UserService implements OnInit {
         loginAction.subscribe((data : any) => {
 
         console.log("data", data);
-        let sdata:String = ""+data;
+        // let sdata:String = ""+data;
         try {
 
                 // jwt token: https://jwt.io/
-                let objectdata: any = sdata.split(".");
-                let header: any = objectdata[0];
-                let payload: any = objectdata[1];
-                let signature: any = objectdata[2];
+                // let objectdata: any = sdata.split(".");
+                // let header: any = objectdata[0];
+                // let payload: any = objectdata[1];
+                // let signature: any = objectdata[2];
 
                 let cu : any = {
-                    "UserId": payload.sub,
-                    "LoggerInUserDisplayName": payload.name,
+                    "UserId": 1,
+                    "LoggerInUserDisplayName": "Oscar",
                 };
+                // let cu : any = {
+                //     "UserId": payload.sub,
+                //     "LoggerInUserDisplayName": payload.name,
+                // };
                 this.currentUser = cu;
                 // window
                 //     .sessionStorage

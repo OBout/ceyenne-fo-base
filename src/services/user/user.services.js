@@ -86,16 +86,21 @@ var UserService = /** @class */ (function () {
         // let th: any = this;
         loginAction.subscribe(function (data) {
             console.log("data", data);
+            // let sdata:String = ""+data;
             try {
                 // jwt token: https://jwt.io/
-                var objectdata = data.split(".");
-                var header = objectdata[0];
-                var payload = objectdata[1];
-                var signature = objectdata[2];
+                // let objectdata: any = sdata.split(".");
+                // let header: any = objectdata[0];
+                // let payload: any = objectdata[1];
+                // let signature: any = objectdata[2];
                 var cu = {
-                    "UserId": payload.sub,
-                    "LoggerInUserDisplayName": payload.name,
+                    "UserId": 1,
+                    "LoggerInUserDisplayName": "Oscar",
                 };
+                // let cu : any = {
+                //     "UserId": payload.sub,
+                //     "LoggerInUserDisplayName": payload.name,
+                // };
                 _this.currentUser = cu;
                 // window
                 //     .sessionStorage
