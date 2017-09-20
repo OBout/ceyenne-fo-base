@@ -11,7 +11,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 import { Injectable, Inject } from "@angular/core";
-import { Http, Headers } from "@angular/http";
+import { Http, Headers, RequestOptions } from "@angular/http";
 import "rxjs/add/operator/map";
 var UserService = /** @class */ (function () {
     function UserService(http) {
@@ -62,7 +62,7 @@ var UserService = /** @class */ (function () {
                 "scope": "api"
             }
         };
-        var options = {};
+        var options = new RequestOptions({ headers: headers, body: body });
         var loginAction;
         if (this.config.METHOD) {
             if (this.config.METHOD === "local") {
@@ -74,7 +74,7 @@ var UserService = /** @class */ (function () {
                 // console.log("posting", conString);
                 loginAction = this
                     .http
-                    .post(conString, body);
+                    .post(conString, options);
             }
         }
         else {
@@ -85,6 +85,7 @@ var UserService = /** @class */ (function () {
         }
         // let th: any = this;
         loginAction.subscribe(function (data) {
+            console.log("data", data);
             try {
                 // jwt token: https://jwt.io/
                 var objectdata = data.split(".");

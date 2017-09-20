@@ -55,6 +55,7 @@ export class UserService implements OnInit {
         headers.append("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
         headers.append("Content-Type", "application/x-www-form-urlencoded");
         headers.append("Authorization", "Basic " + this.config.CONFORMATIONTOKEN);
+
         let conString: string = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
         let body: any = {
             "grant_type":
