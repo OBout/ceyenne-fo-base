@@ -90,11 +90,11 @@ export class UserService implements OnInit {
         loginAction.subscribe((data : any) => {
 
         console.log("data", data);
-
+        let sdata:String = ""+data;
         try {
 
                 // jwt token: https://jwt.io/
-                let objectdata: any = data.split(".");
+                let objectdata: any = sdata.split(".");
                 let header: any = objectdata[0];
                 let payload: any = objectdata[1];
                 let signature: any = objectdata[2];
