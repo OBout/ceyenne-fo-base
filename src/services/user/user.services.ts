@@ -21,9 +21,7 @@ export class UserService implements OnInit {
         // thats empty
     }
 
-    public isAuthenticated() : boolean {
-        return this.authenticated;
-    }
+    public isAuthenticated() : boolean {return this.authenticated;}
 
     public init(config : any) : void {
         this.config = config;
@@ -35,9 +33,8 @@ export class UserService implements OnInit {
     }
 
     public getCurrentUser() : any {
-        // returning current user
-        // let curu: any = this.currentUser;
-        // let curjson: any = JSON.parse(curu);
+        // returning current user let curu: any = this.currentUser; let curjson: any =
+        // JSON.parse(curu);
         return this.currentUser;
     }
 
@@ -55,18 +52,16 @@ export class UserService implements OnInit {
         headers.append("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
         headers.append("Content-Type", "application/x-www-form-urlencoded");
         headers.append("Authorization", "Basic " + this.config.CONFORMATIONTOKEN);
-
         let conString: string = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
         let body: any = {
-            "grant_type":
-                {
-                    "username": username,
-                    "password": password,
-                    "client_id": this.config.APPLICATIONID,
-                    "scope": "api"
-                }
-            };
-        let options: RequestOptions = new RequestOptions({ headers: headers, body: body });
+            "grant_type": "password",
+            "username": username,
+            "password": password,
+            "client_id": this.config.APPLICATIONID,
+            "scope": "api"
+
+        };
+        let options: RequestOptions = new RequestOptions({headers: headers});
         let loginAction: any;
         if (this.config.METHOD) {
             if (this.config.METHOD === "local") {
@@ -77,45 +72,38 @@ export class UserService implements OnInit {
                 // console.log("posting", conString);
                 loginAction = this
                     .http
-                    .post(conString, options);
+                    .post(conString, options, body);
             }
         } else {
             // console.log("posting", conString);
-            loginAction = this
-                .http
-                .post(conString, body);
+            // loginAction = this
+            //     .http
+            //     .post(conString, body);
         }
 
         // let th: any = this;
         loginAction.subscribe((data : any) => {
 
-        console.log("data", data);
-        // let sdata:String = ""+data;
-        try {
+            console.log("data", data);
+
+            try {
 
                 // jwt token: https://jwt.io/
-                // let objectdata: any = sdata.split(".");
-                // let header: any = objectdata[0];
-                // let payload: any = objectdata[1];
-                // let signature: any = objectdata[2];
+                let objectdata : any = data.split(".");
+                let header : any = objectdata[0];
+                let payload : any = objectdata[1];
+                let signature : any = objectdata[2];
 
                 let cu : any = {
-                    "UserId": 1,
-                    "LoggerInUserDisplayName": "Oscar",
+                    "UserId": payload.sub,
+                    "LoggerInUserDisplayName": payload.name
                 };
-                // let cu : any = {
-                //     "UserId": payload.sub,
-                //     "LoggerInUserDisplayName": payload.name,
-                // };
                 this.currentUser = cu;
-                // window
-                //     .sessionStorage
-                //     .setItem("CurrentUser", JSON.stringify(cu));
+                // window     .sessionStorage     .setItem("CurrentUser", JSON.stringify(cu));
                 // settings for Identity Server
                 this.authenticationToken = "Bearer " + data;
-                // window
-                //     .sessionStorage
-                //     .setItem("Authenticationtoken", data.AuthenticationToken);
+                // window     .sessionStorage     .setItem("Authenticationtoken",
+                // data.AuthenticationToken);
 
                 this.authenticated = true;
                 // console.log("authenticated", this.authenticated);
@@ -124,9 +112,7 @@ export class UserService implements OnInit {
                 console.log("e", e);
                 this.authenticationToken = "";
 
-                // window
-                //     .sessionStorage
-                //     .setItem("Authenticationtoken", "");
+                // window     .sessionStorage     .setItem("Authenticationtoken", "");
                 return new Error("Authentication Error");
             }
 

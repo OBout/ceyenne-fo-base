@@ -25,9 +25,7 @@ var UserService = /** @class */ (function () {
     UserService.prototype.ngOnInit = function () {
         // thats empty
     };
-    UserService.prototype.isAuthenticated = function () {
-        return this.authenticated;
-    };
+    UserService.prototype.isAuthenticated = function () { return this.authenticated; };
     UserService.prototype.init = function (config) {
         this.config = config;
     };
@@ -36,9 +34,8 @@ var UserService = /** @class */ (function () {
         return this.authenticationToken;
     };
     UserService.prototype.getCurrentUser = function () {
-        // returning current user
-        // let curu: any = this.currentUser;
-        // let curjson: any = JSON.parse(curu);
+        // returning current user let curu: any = this.currentUser; let curjson: any =
+        // JSON.parse(curu);
         return this.currentUser;
     };
     UserService.prototype.logout = function () {
@@ -55,14 +52,13 @@ var UserService = /** @class */ (function () {
         headers.append("Authorization", "Basic " + this.config.CONFORMATIONTOKEN);
         var conString = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
         var body = {
-            "grant_type": {
-                "username": username,
-                "password": password,
-                "client_id": this.config.APPLICATIONID,
-                "scope": "api"
-            }
+            "grant_type": "password",
+            "username": username,
+            "password": password,
+            "client_id": this.config.APPLICATIONID,
+            "scope": "api"
         };
-        var options = new RequestOptions({ headers: headers, body: body });
+        var options = new RequestOptions({ headers: headers });
         var loginAction;
         if (this.config.METHOD) {
             if (this.config.METHOD === "local") {
@@ -74,51 +70,41 @@ var UserService = /** @class */ (function () {
                 // console.log("posting", conString);
                 loginAction = this
                     .http
-                    .post(conString, options);
+                    .post(conString, options, body);
             }
         }
         else {
             // console.log("posting", conString);
-            loginAction = this
-                .http
-                .post(conString, body);
+            // loginAction = this
+            //     .http
+            //     .post(conString, body);
         }
         // let th: any = this;
         loginAction.subscribe(function (data) {
             console.log("data", data);
-            // let sdata:String = ""+data;
             try {
                 // jwt token: https://jwt.io/
-                // let objectdata: any = sdata.split(".");
-                // let header: any = objectdata[0];
-                // let payload: any = objectdata[1];
-                // let signature: any = objectdata[2];
+                var objectdata = data.split(".");
+                var header = objectdata[0];
+                var payload = objectdata[1];
+                var signature = objectdata[2];
                 var cu = {
-                    "UserId": 1,
-                    "LoggerInUserDisplayName": "Oscar",
+                    "UserId": payload.sub,
+                    "LoggerInUserDisplayName": payload.name
                 };
-                // let cu : any = {
-                //     "UserId": payload.sub,
-                //     "LoggerInUserDisplayName": payload.name,
-                // };
                 _this.currentUser = cu;
-                // window
-                //     .sessionStorage
-                //     .setItem("CurrentUser", JSON.stringify(cu));
+                // window     .sessionStorage     .setItem("CurrentUser", JSON.stringify(cu));
                 // settings for Identity Server
                 _this.authenticationToken = "Bearer " + data;
-                // window
-                //     .sessionStorage
-                //     .setItem("Authenticationtoken", data.AuthenticationToken);
+                // window     .sessionStorage     .setItem("Authenticationtoken",
+                // data.AuthenticationToken);
                 _this.authenticated = true;
                 // console.log("authenticated", this.authenticated);
             }
             catch (e) {
                 console.log("e", e);
                 _this.authenticationToken = "";
-                // window
-                //     .sessionStorage
-                //     .setItem("Authenticationtoken", "");
+                // window     .sessionStorage     .setItem("Authenticationtoken", "");
                 return new Error("Authentication Error");
             }
         }, function (error) {
