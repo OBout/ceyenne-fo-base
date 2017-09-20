@@ -12,12 +12,6 @@
 * 'npm install'
 * followed by:
 * 'tsc'
-* followed by:
-* 'npm link'
-* then in the project where you wish to use this SDK:
-* 'npm link ceyenne-fo-base' where "ceyenne-fo-base" is the folder name npm used to expose
-* followed by:
-* 'npm install'
 *
 */
 export * from "./src/services/log/log.services";

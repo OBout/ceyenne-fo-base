@@ -51,12 +51,16 @@ var UserService = /** @class */ (function () {
         var _this = this;
         var headers = new Headers();
         headers.append("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+        headers.append("Content-Type", "application/x-www-form-urlencoded");
+        headers.append("Authorization", "Basic " + this.config.CONFORMATIONTOKEN);
         var conString = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
         var body = {
-            "UserName": username,
-            "Password": password,
-            "ApplicationID": this.config.APPLICATIONID,
-            "ConfirmationToken": this.config.CONFORMATIONTOKEN
+            "grant_type": {
+                "username": username,
+                "password": password,
+                "client_id": this.config.APPLICATIONID,
+                "scope": "api"
+            }
         };
         var options = {};
         var loginAction;
@@ -82,17 +86,21 @@ var UserService = /** @class */ (function () {
         // let th: any = this;
         loginAction.subscribe(function (data) {
             try {
-                data = data.json();
-                // console.log("data", data);
+                // jwt token: https://jwt.io/
+                var objectdata = data.split(".");
+                var header = objectdata[0];
+                var payload = objectdata[1];
+                var signature = objectdata[2];
                 var cu = {
-                    "UserId": data.UserId,
-                    "LoggerInUserDisplayName": data.LoggerInUserDisplayName,
+                    "UserId": payload.sub,
+                    "LoggerInUserDisplayName": payload.name,
                 };
                 _this.currentUser = cu;
                 // window
                 //     .sessionStorage
                 //     .setItem("CurrentUser", JSON.stringify(cu));
-                _this.authenticationToken = data.AuthenticationToken;
+                // settings for Identity Server
+                _this.authenticationToken = "Bearer " + data;
                 // window
                 //     .sessionStorage
                 //     .setItem("Authenticationtoken", data.AuthenticationToken);
