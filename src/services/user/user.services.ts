@@ -1,6 +1,6 @@
 import {OnInit} from "@angular/core/core";
 import {Injectable, Inject} from "@angular/core";
-import {Http, Headers, Response} from "@angular/http";
+import {Http, Headers, Response, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs/Rx";
 import "rxjs/add/operator/map";
 
@@ -65,7 +65,7 @@ export class UserService implements OnInit {
                     "scope": "api"
                 }
             };
-        let options: any = {};
+        let options: RequestOptions = new RequestOptions({ headers: headers, body: body });
         let loginAction: any;
         if (this.config.METHOD) {
             if (this.config.METHOD === "local") {
@@ -76,7 +76,7 @@ export class UserService implements OnInit {
                 // console.log("posting", conString);
                 loginAction = this
                     .http
-                    .post(conString, body);
+                    .post(conString, options);
             }
         } else {
             // console.log("posting", conString);
@@ -87,7 +87,10 @@ export class UserService implements OnInit {
 
         // let th: any = this;
         loginAction.subscribe((data : any) => {
-            try {
+
+        console.log("data", data);
+
+        try {
 
                 // jwt token: https://jwt.io/
                 let objectdata: any = data.split(".");
