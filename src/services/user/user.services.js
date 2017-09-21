@@ -79,9 +79,9 @@ var UserService = /** @class */ (function () {
                 var objectdata = datajson.access_token.split(".");
                 console.log("objectdata", objectdata);
                 var bearer = datajson.token_type;
-                var header = atob(objectdata[0]);
+                // let header : any = atob(objectdata[0]);
                 var payload = JSON.parse(atob(objectdata[1]));
-                var signature = atob(objectdata[2]);
+                // let signature : any = atob(objectdata[2]);
                 console.log("payload", payload);
                 var cu = {
                     "UserId": payload.sub,

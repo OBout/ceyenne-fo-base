@@ -88,9 +88,9 @@ export class UserService implements OnInit {
                 console.log("objectdata", objectdata);
 
                 let bearer : String = datajson.token_type;
-                let header : any = atob(objectdata[0]);
+                // let header : any = atob(objectdata[0]);
                 let payload : any = JSON.parse(atob(objectdata[1]));
-                let signature : any = atob(objectdata[2]);
+                // let signature : any = atob(objectdata[2]);
 
                 console.log("payload", payload);
 
