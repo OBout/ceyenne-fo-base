@@ -70,7 +70,7 @@ var UserService = /** @class */ (function () {
         // }
         // let th: any = this;
         loginAction.subscribe(function (data) {
-            // console.log("data", data);
+            console.log("data", data);
             // console.log("body", body);
             // console.log("headers", headers);
             try {
