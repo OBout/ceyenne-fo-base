@@ -79,9 +79,10 @@ var UserService = /** @class */ (function () {
                 var objectdata = datajson.access_token.split(".");
                 console.log("objectdata", objectdata);
                 var bearer = datajson.token_type;
-                var header = objectdata[0];
-                var payload = objectdata[1];
-                var signature = objectdata[2];
+                var header = atob(objectdata[0]);
+                var payload = JSON.parse(atob(objectdata[1]));
+                var signature = atob(objectdata[2]);
+                console.log("payload", payload);
                 var cu = {
                     "UserId": payload.sub,
                     "LoggerInUserDisplayName": payload.name
@@ -89,7 +90,7 @@ var UserService = /** @class */ (function () {
                 _this.currentUser = cu;
                 // window     .sessionStorage     .setItem("CurrentUser", JSON.stringify(cu));
                 // settings for Identity Server
-                _this.authenticationToken = bearer + " " + data;
+                _this.authenticationToken = bearer + " " + datajson.access_token;
                 // window     .sessionStorage     .setItem("Authenticationtoken",
                 // data.AuthenticationToken);
                 _this.authenticated = true;

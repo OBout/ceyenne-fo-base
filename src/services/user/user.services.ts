@@ -88,9 +88,11 @@ export class UserService implements OnInit {
                 console.log("objectdata", objectdata);
 
                 let bearer : String = datajson.token_type;
-                let header : any = objectdata[0];
-                let payload : any = objectdata[1];
-                let signature : any = objectdata[2];
+                let header : any = atob(objectdata[0]);
+                let payload : any = JSON.parse(atob(objectdata[1]));
+                let signature : any = atob(objectdata[2]);
+
+                console.log("payload", payload);
 
                 let cu : any = {
                     "UserId": payload.sub,
@@ -99,7 +101,7 @@ export class UserService implements OnInit {
                 this.currentUser = cu;
                 // window     .sessionStorage     .setItem("CurrentUser", JSON.stringify(cu));
                 // settings for Identity Server
-                this.authenticationToken = bearer + " " + data;
+                this.authenticationToken = bearer + " " + datajson.access_token;
                 // window     .sessionStorage     .setItem("Authenticationtoken",
                 // data.AuthenticationToken);
 
