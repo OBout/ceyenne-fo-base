@@ -46,19 +46,22 @@ export class UserService implements OnInit {
 
     public login(username : string, password : string, redirect?: any) : any {
 
-        let headers: Headers = new Headers();
+        let headers: Headers = new Headers({ "Content-Type": "application/json", "Authorization": this.config.CONFIRMATIONTOKEN });
 
-        headers.append("Content-Type", "application/x-www-form-urlencoded");
-        headers.append("Authorization", this.config.CONFIRMATIONTOKEN);
+        console.log("headers", headers);
+
         let conString: string = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
-        let body: any = {
+        let body: any = JSON.stringify({
             "grant_type": "password",
             "username": username,
             "password": password,
             "client_id": this.config.APPLICATIONID,
             "scope": "api"
 
-        };
+        });
+
+        console.log("body", body);
+
         let options: RequestOptions = new RequestOptions({headers: headers});
         let loginAction: any;
         if (this.config.METHOD) {
@@ -70,7 +73,7 @@ export class UserService implements OnInit {
                 // console.log("posting", conString);
                 loginAction = this
                     .http
-                    .post(conString, {headers : headers, body : body});
+                    .post(conString, body, options);
             }
         } else {
             // console.log("posting", conString);
