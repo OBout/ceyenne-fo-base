@@ -47,7 +47,7 @@ var UserService = /** @class */ (function () {
         var _this = this;
         var headers = new Headers();
         headers.append("Content-Type", "application/x-www-form-urlencoded");
-        headers.append("Authorization", "Basic " + this.config.CONFORMATIONTOKEN);
+        headers.append("Authorization", this.config.CONFIRMATIONTOKEN);
         var conString = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
         var body = {
             "grant_type": "password",

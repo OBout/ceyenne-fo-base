@@ -49,7 +49,7 @@ export class UserService implements OnInit {
         let headers: Headers = new Headers();
 
         headers.append("Content-Type", "application/x-www-form-urlencoded");
-        headers.append("Authorization", "Basic " + this.config.CONFORMATIONTOKEN);
+        headers.append("Authorization", this.config.CONFIRMATIONTOKEN);
         let conString: string = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
         let body: any = {
             "grant_type": "password",
