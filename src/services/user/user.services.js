@@ -80,7 +80,7 @@ var UserService = /** @class */ (function () {
                 console.log("objectdata", objectdata);
                 var bearer = datajson.token_type;
                 // let header : any = atob(objectdata[0]);
-                var payload = JSON.parse(atob(objectdata[1]));
+                var payload = atob(objectdata[1]);
                 // let signature : any = atob(objectdata[2]);
                 console.log("payload", payload);
                 var cu = {
