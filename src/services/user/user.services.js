@@ -49,11 +49,11 @@ var UserService = /** @class */ (function () {
         console.log("headers", headers);
         var conString = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
         var body = JSON.stringify({
-            "grant_type": "password",
-            "username": username,
-            "password": password,
-            "client_id": this.config.APPLICATIONID,
-            "scope": "api"
+            grant_type: "password",
+            username: username,
+            password: password,
+            client_id: this.config.APPLICATIONID,
+            scope: "api"
         });
         console.log("body", body);
         var options = new RequestOptions({ headers: headers });

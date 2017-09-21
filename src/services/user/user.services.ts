@@ -52,11 +52,11 @@ export class UserService implements OnInit {
 
         let conString: string = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
         let body: any = JSON.stringify({
-            "grant_type": "password",
-            "username": username,
-            "password": password,
-            "client_id": this.config.APPLICATIONID,
-            "scope": "api"
+            grant_type: "password",
+            username: username,
+            password: password,
+            client_id: this.config.APPLICATIONID,
+            scope: "api"
 
         });
 
