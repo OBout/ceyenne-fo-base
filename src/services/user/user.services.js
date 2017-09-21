@@ -48,13 +48,7 @@ var UserService = /** @class */ (function () {
         var headers = new Headers({ "Content-Type": "application/x-www-form-urlencoded",
             "Authorization": "Basic " + this.config.CONFIRMATIONTOKEN });
         var conString = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
-        var body = {
-            grant_type: "password",
-            username: username,
-            password: password,
-            client_id: this.config.APPLICATIONID,
-            scope: "api"
-        };
+        var body = "grant_type=password&username=" + username + "&password=" + password + "&client_id=" + this.config.APPLICATIONID + "&scope=api";
         // let options: any = {headers: headers};
         var loginAction;
         // if (this.config.METHOD) {
@@ -76,9 +70,9 @@ var UserService = /** @class */ (function () {
         // }
         // let th: any = this;
         loginAction.subscribe(function (data) {
-            console.log("data", data);
-            console.log("body", body);
-            console.log("headers", headers);
+            // console.log("data", data);
+            // console.log("body", body);
+            // console.log("headers", headers);
             try {
                 // jwt token: https://jwt.io/
                 var objectdata = data.split(".");

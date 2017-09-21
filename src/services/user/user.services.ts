@@ -50,14 +50,7 @@ export class UserService implements OnInit {
         "Authorization": "Basic " + this.config.CONFIRMATIONTOKEN });
 
         let conString: string = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
-        let body: any = {
-            grant_type: "password",
-            username: username,
-            password: password,
-            client_id: this.config.APPLICATIONID,
-            scope: "api"
-
-        };
+        let body: any = "grant_type=password&username="+username+"&password="+password+"&client_id="+this.config.APPLICATIONID+"&scope=api";
 
         // let options: any = {headers: headers};
         let loginAction: any;
@@ -82,9 +75,9 @@ export class UserService implements OnInit {
         // let th: any = this;
         loginAction.subscribe((data : any) => {
 
-            console.log("data", data);
-            console.log("body", body);
-            console.log("headers", headers);
+            // console.log("data", data);
+            // console.log("body", body);
+            // console.log("headers", headers);
 
             try {
 
