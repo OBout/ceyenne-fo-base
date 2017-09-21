@@ -45,17 +45,17 @@ var UserService = /** @class */ (function () {
     };
     UserService.prototype.login = function (username, password, redirect) {
         var _this = this;
-        var headers = new Headers();
-        headers.append("Content-Type", "application/x-www-form-urlencoded");
-        headers.append("Authorization", this.config.CONFIRMATIONTOKEN);
+        var headers = new Headers({ "Content-Type": "application/json", "Authorization": this.config.CONFIRMATIONTOKEN });
+        console.log("headers", headers);
         var conString = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
-        var body = {
+        var body = JSON.stringify({
             "grant_type": "password",
             "username": username,
             "password": password,
             "client_id": this.config.APPLICATIONID,
             "scope": "api"
-        };
+        });
+        console.log("body", body);
         var options = new RequestOptions({ headers: headers });
         var loginAction;
         if (this.config.METHOD) {
@@ -68,7 +68,7 @@ var UserService = /** @class */ (function () {
                 // console.log("posting", conString);
                 loginAction = this
                     .http
-                    .post(conString, { headers: headers, body: body });
+                    .post(conString, body, options);
             }
         }
         else {
