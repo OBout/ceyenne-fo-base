@@ -77,13 +77,14 @@ export class UserService implements OnInit {
 
             console.log("data", data);
             console.log("data._body", data._body);
-            console.log("data._body", data._body.access_token);
+
+            let datajson: any = JSON.parse(data._body);
 
             try {
 
                 // jwt token: https://jwt.io/
-                let objectdata : any = data._body.access_token.split(".");
-                let bearer : String = data._body.token_type;
+                let objectdata : any = datajson.access_token.split(".");
+                let bearer : String = datajson.token_type;
                 let header : any = objectdata[0];
                 let payload : any = objectdata[1];
                 let signature : any = objectdata[2];
@@ -95,7 +96,7 @@ export class UserService implements OnInit {
                 this.currentUser = cu;
                 // window     .sessionStorage     .setItem("CurrentUser", JSON.stringify(cu));
                 // settings for Identity Server
-                this.authenticationToken = "Bearer " + data;
+                this.authenticationToken = bearer + " " + data;
                 // window     .sessionStorage     .setItem("Authenticationtoken",
                 // data.AuthenticationToken);
 

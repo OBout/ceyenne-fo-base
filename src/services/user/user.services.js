@@ -72,11 +72,11 @@ var UserService = /** @class */ (function () {
         loginAction.subscribe(function (data) {
             console.log("data", data);
             console.log("data._body", data._body);
-            console.log("data._body", data._body.access_token);
+            var datajson = JSON.parse(data._body);
             try {
                 // jwt token: https://jwt.io/
-                var objectdata = data._body.access_token.split(".");
-                var bearer = data._body.token_type;
+                var objectdata = datajson.access_token.split(".");
+                var bearer = datajson.token_type;
                 var header = objectdata[0];
                 var payload = objectdata[1];
                 var signature = objectdata[2];
@@ -87,7 +87,7 @@ var UserService = /** @class */ (function () {
                 _this.currentUser = cu;
                 // window     .sessionStorage     .setItem("CurrentUser", JSON.stringify(cu));
                 // settings for Identity Server
-                _this.authenticationToken = "Bearer " + data;
+                _this.authenticationToken = bearer + " " + data;
                 // window     .sessionStorage     .setItem("Authenticationtoken",
                 // data.AuthenticationToken);
                 _this.authenticated = true;
