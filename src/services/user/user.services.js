@@ -70,9 +70,8 @@ var UserService = /** @class */ (function () {
         // }
         // let th: any = this;
         loginAction.subscribe(function (data) {
-            console.log("data", data.Response);
-            // console.log("body", body);
-            // console.log("headers", headers);
+            console.log("data", data);
+            console.log("data._body", data._body);
             try {
                 // jwt token: https://jwt.io/
                 var objectdata = data.split(".");

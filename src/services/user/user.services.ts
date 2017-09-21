@@ -75,9 +75,8 @@ export class UserService implements OnInit {
         // let th: any = this;
         loginAction.subscribe((data : any) => {
 
-            console.log("data", data.Response);
-            // console.log("body", body);
-            // console.log("headers", headers);
+            console.log("data", data);
+            console.log("data._body", data._body);
 
             try {
 
