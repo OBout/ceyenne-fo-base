@@ -45,7 +45,8 @@ var UserService = /** @class */ (function () {
     };
     UserService.prototype.login = function (username, password, redirect) {
         var _this = this;
-        var headers = new Headers({ "Content-Type": "application/json", "Authorization": this.config.CONFIRMATIONTOKEN });
+        var headers = new Headers({ "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": "Basic " + this.config.CONFIRMATIONTOKEN });
         var conString = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
         var body = JSON.stringify({
             grant_type: "password",

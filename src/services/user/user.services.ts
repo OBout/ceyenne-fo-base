@@ -46,8 +46,8 @@ export class UserService implements OnInit {
 
     public login(username : string, password : string, redirect?: any) : any {
 
-        let headers: Headers = new Headers({ "Content-Type": "application/json", "Authorization": this.config.CONFIRMATIONTOKEN });
-
+        let headers: Headers = new Headers({ "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization": "Basic " + this.config.CONFIRMATIONTOKEN });
 
         let conString: string = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
         let body: any = JSON.stringify({
