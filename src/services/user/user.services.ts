@@ -84,6 +84,9 @@ export class UserService implements OnInit {
 
                 // jwt token: https://jwt.io/
                 let objectdata : any = datajson.access_token.split(".");
+
+                console.log("objectdata", objectdata);
+
                 let bearer : String = datajson.token_type;
                 let header : any = objectdata[0];
                 let payload : any = objectdata[1];

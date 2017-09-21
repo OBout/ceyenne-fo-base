@@ -77,6 +77,7 @@ var UserService = /** @class */ (function () {
                 console.log("datajson", datajson);
                 // jwt token: https://jwt.io/
                 var objectdata = datajson.access_token.split(".");
+                console.log("objectdata", objectdata);
                 var bearer = datajson.token_type;
                 var header = objectdata[0];
                 var payload = objectdata[1];
