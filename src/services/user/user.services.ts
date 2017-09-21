@@ -96,9 +96,19 @@ export class UserService implements OnInit {
 
                 console.log("payload", payload);
 
+                let sub: any = 0;
+                let name: any = "";
+
+                if (payload.sub) {
+                    sub = payload.sub;
+                }
+                if (payload.name) {
+                    name = payload.name;
+                }
+
                 let cu : any = {
-                    "UserId": payload.sub,
-                    "LoggerInUserDisplayName": payload.name
+                    "UserId": sub,
+                    "LoggerInUserDisplayName": name
                 };
                 this.currentUser = cu;
                 // window     .sessionStorage     .setItem("CurrentUser", JSON.stringify(cu));

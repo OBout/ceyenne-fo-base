@@ -84,9 +84,17 @@ var UserService = /** @class */ (function () {
                 var payload = atob(pls);
                 // let signature : any = atob(objectdata[2]);
                 console.log("payload", payload);
+                var sub = 0;
+                var name_1 = "";
+                if (payload.sub) {
+                    sub = payload.sub;
+                }
+                if (payload.name) {
+                    name_1 = payload.name;
+                }
                 var cu = {
-                    "UserId": payload.sub,
-                    "LoggerInUserDisplayName": payload.name
+                    "UserId": sub,
+                    "LoggerInUserDisplayName": name_1
                 };
                 _this.currentUser = cu;
                 // window     .sessionStorage     .setItem("CurrentUser", JSON.stringify(cu));
