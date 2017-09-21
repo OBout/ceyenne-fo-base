@@ -74,7 +74,7 @@ var UserService = /** @class */ (function () {
             console.log("data._body", data._body);
             try {
                 // jwt token: https://jwt.io/
-                var objectdata = data.split(".");
+                var objectdata = data._body.split(".");
                 var header = objectdata[0];
                 var payload = objectdata[1];
                 var signature = objectdata[2];
