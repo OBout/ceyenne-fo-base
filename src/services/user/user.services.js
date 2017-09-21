@@ -11,7 +11,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 import { Injectable, Inject } from "@angular/core";
-import { Http, Headers, RequestOptions } from "@angular/http";
+import { Http, Headers } from "@angular/http";
 import "rxjs/add/operator/map";
 var UserService = /** @class */ (function () {
     function UserService(http) {
@@ -46,7 +46,6 @@ var UserService = /** @class */ (function () {
     UserService.prototype.login = function (username, password, redirect) {
         var _this = this;
         var headers = new Headers({ "Content-Type": "application/json", "Authorization": this.config.CONFIRMATIONTOKEN });
-        console.log("headers", headers);
         var conString = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
         var body = JSON.stringify({
             grant_type: "password",
@@ -55,31 +54,30 @@ var UserService = /** @class */ (function () {
             client_id: this.config.APPLICATIONID,
             scope: "api"
         });
-        console.log("body", body);
-        var options = new RequestOptions({ headers: headers });
+        // let options: any = {headers: headers};
         var loginAction;
-        if (this.config.METHOD) {
-            if (this.config.METHOD === "local") {
-                loginAction = this
-                    .http
-                    .get(conString);
-            }
-            else {
-                // console.log("posting", conString);
-                loginAction = this
-                    .http
-                    .post(conString, body, options);
-            }
-        }
-        else {
-            // console.log("posting", conString);
-            // loginAction = this
-            //     .http
-            //     .post(conString, body);
-        }
+        // if (this.config.METHOD) {
+        //     if (this.config.METHOD === "local") {
+        //         loginAction = this
+        //             .http
+        //             .get(conString);
+        //     } else {
+        // console.log("posting", conString);
+        loginAction = this
+            .http
+            .post(conString, body, { headers: headers });
+        // }
+        // } else {
+        //     // console.log("posting", conString);
+        //     // loginAction = this
+        //     //     .http
+        //     //     .post(conString, body);
+        // }
         // let th: any = this;
         loginAction.subscribe(function (data) {
             console.log("data", data);
+            console.log("body", body);
+            console.log("headers", headers);
             try {
                 // jwt token: https://jwt.io/
                 var objectdata = data.split(".");

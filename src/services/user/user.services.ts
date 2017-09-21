@@ -48,7 +48,6 @@ export class UserService implements OnInit {
 
         let headers: Headers = new Headers({ "Content-Type": "application/json", "Authorization": this.config.CONFIRMATIONTOKEN });
 
-        console.log("headers", headers);
 
         let conString: string = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
         let body: any = JSON.stringify({
@@ -60,32 +59,32 @@ export class UserService implements OnInit {
 
         });
 
-        console.log("body", body);
-
-        let options: RequestOptions = new RequestOptions({headers: headers});
+        // let options: any = {headers: headers};
         let loginAction: any;
-        if (this.config.METHOD) {
-            if (this.config.METHOD === "local") {
-                loginAction = this
-                    .http
-                    .get(conString);
-            } else {
+        // if (this.config.METHOD) {
+        //     if (this.config.METHOD === "local") {
+        //         loginAction = this
+        //             .http
+        //             .get(conString);
+        //     } else {
                 // console.log("posting", conString);
-                loginAction = this
-                    .http
-                    .post(conString, body, options);
-            }
-        } else {
-            // console.log("posting", conString);
-            // loginAction = this
-            //     .http
-            //     .post(conString, body);
-        }
+        loginAction = this
+            .http
+            .post(conString, body, {headers: headers});
+            // }
+        // } else {
+        //     // console.log("posting", conString);
+        //     // loginAction = this
+        //     //     .http
+        //     //     .post(conString, body);
+        // }
 
         // let th: any = this;
         loginAction.subscribe((data : any) => {
 
             console.log("data", data);
+            console.log("body", body);
+            console.log("headers", headers);
 
             try {
 
