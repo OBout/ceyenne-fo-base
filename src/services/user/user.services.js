@@ -72,8 +72,9 @@ var UserService = /** @class */ (function () {
         loginAction.subscribe(function (data) {
             console.log("data", data);
             console.log("data._body", data._body);
-            var datajson = JSON.parse(data._body);
             try {
+                var datajson = JSON.parse(data._body);
+                console.log("datajson", datajson);
                 // jwt token: https://jwt.io/
                 var objectdata = datajson.access_token.split(".");
                 var bearer = datajson.token_type;

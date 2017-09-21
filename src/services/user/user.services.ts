@@ -78,9 +78,9 @@ export class UserService implements OnInit {
             console.log("data", data);
             console.log("data._body", data._body);
 
-            let datajson: any = JSON.parse(data._body);
-
             try {
+                let datajson: any = JSON.parse(data._body);
+                console.log("datajson", datajson);
 
                 // jwt token: https://jwt.io/
                 let objectdata : any = datajson.access_token.split(".");
