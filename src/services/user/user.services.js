@@ -99,7 +99,7 @@ var UserService = /** @class */ (function () {
                 _this.currentUser = cu;
                 // window     .sessionStorage     .setItem("CurrentUser", JSON.stringify(cu));
                 // settings for Identity Server
-                _this.authenticationToken = bearer + " " + datajson.access_token;
+                _this.authenticationToken = "Bearer " + datajson.access_token;
                 // window     .sessionStorage     .setItem("Authenticationtoken",
                 // data.AuthenticationToken);
                 _this.authenticated = true;

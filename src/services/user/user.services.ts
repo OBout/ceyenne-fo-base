@@ -113,7 +113,7 @@ export class UserService implements OnInit {
                 this.currentUser = cu;
                 // window     .sessionStorage     .setItem("CurrentUser", JSON.stringify(cu));
                 // settings for Identity Server
-                this.authenticationToken = bearer + " " + datajson.access_token;
+                this.authenticationToken = "Bearer " + datajson.access_token;
                 // window     .sessionStorage     .setItem("Authenticationtoken",
                 // data.AuthenticationToken);
 
