@@ -77,6 +77,7 @@ export class UserService implements OnInit {
 
             console.log("data", data);
             console.log("data._body", data._body);
+            console.log("data._body", data._body.access_token);
 
             try {
 
